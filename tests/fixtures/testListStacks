@@ -1,0 +1,31 @@
+
+-
+    request:
+        method: GET
+        url: 'https://dashboard.tutum.co/api/v1/stack/'
+        headers:
+            Host: dashboard.tutum.co
+            Accept-Encoding: null
+            Authorization: 'ApiKey matthewbaggett:decea003584f7df33be57f547f63f2cccd8e3188'
+            Accepts: application/json
+            User-Agent: 'Guzzle/5.3.0 curl/7.35.0 PHP/5.5.9-1ubuntu4.11'
+            Accept: null
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Cache-Control: no-cache
+            Content-Type: application/json
+            Date: 'Wed, 29 Jul 2015 16:07:20 GMT'
+            Server: nginx
+            Strict-Transport-Security: 'max-age=31536000; includeSubdomains'
+            Vary: 'Accept, Cookie'
+            X-Content-Type-Options: nosniff
+            X-Frame-Options: DENY
+            X-Tutum-Served-By: 7f5658cfd16f
+            X-XSS-Protection: '1; mode=block'
+            Content-Length: '2141'
+            Connection: keep-alive
+        body: '{"meta": {"limit": 25, "next": null, "offset": 0, "previous": null, "total_count": 3}, "objects": [{"deployed_datetime": "Sat, 25 Jul 2015 15:57:58 +0000", "destroyed_datetime": null, "name": "Thruio", "resource_uri": "/api/v1/stack/7734bf20-a765-47a1-82e6-019e885dc327/", "services": ["/api/v1/service/eb97d1b2-7264-497e-984a-47cadaf51f4f/", "/api/v1/service/0235dd59-40bd-4f8d-9db9-6644976d0e13/", "/api/v1/service/4f07a3fa-5101-43c4-a973-a23571e88a53/", "/api/v1/service/a0415433-97f9-4ac1-a75c-76696d2aa08a/", "/api/v1/service/2f893a60-12d6-4b45-a120-86edb41755ee/", "/api/v1/service/879cfcc9-e71a-4370-a59e-541ddde2ee1d/", "/api/v1/service/0eef8714-e79a-461d-8f1b-739ce9541154/", "/api/v1/service/79095ece-0722-4cab-ad68-45e47d129d77/", "/api/v1/service/eb8ec686-de40-4ac5-a4e5-e4f9662d8cc4/", "/api/v1/service/6fe506a6-a85c-4bcf-9398-f1429657f4df/", "/api/v1/service/c383fd2b-ce03-41c1-a8f5-caa8b3b0d2fe/", "/api/v1/service/d9316cf3-b785-4055-a2e9-dd80f4a9f430/", "/api/v1/service/e932b8a4-30a3-4fda-9a83-5986c3d7d1eb/", "/api/v1/service/dacf0e92-e975-43db-8c97-7732b14649d1/", "/api/v1/service/8a41b156-bc83-4bd4-bb45-f885ae084a53/", "/api/v1/service/7a613296-e861-47c7-98c5-05f75b760bcf/", "/api/v1/service/3ce3d91d-5042-4d60-9126-0f6aeab1bab3/"], "state": "Running", "synchronized": true, "uuid": "7734bf20-a765-47a1-82e6-019e885dc327"}, {"deployed_datetime": "Wed, 29 Jul 2015 14:13:58 +0000", "destroyed_datetime": null, "name": "Guacamole", "resource_uri": "/api/v1/stack/808ef02b-4bfe-45ee-bb13-edf5c3903adf/", "services": ["/api/v1/service/8fa88b1c-2139-459c-9c06-5c8b693e2ce8/", "/api/v1/service/8a17c12e-d0dc-456c-9777-bf488749f3b8/", "/api/v1/service/d62e12d5-ba57-4b27-b25e-2654e6ab12b2/"], "state": "Running", "synchronized": true, "uuid": "808ef02b-4bfe-45ee-bb13-edf5c3903adf"}, {"deployed_datetime": "Wed, 29 Jul 2015 14:40:15 +0000", "destroyed_datetime": null, "name": "Experiments", "resource_uri": "/api/v1/stack/6a360179-1382-434b-98eb-760bc38b2d78/", "services": ["/api/v1/service/fdce699c-7db4-4782-a7ca-ff1300c28205/"], "state": "Running", "synchronized": true, "uuid": "6a360179-1382-434b-98eb-760bc38b2d78"}]}'

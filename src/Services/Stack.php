@@ -7,22 +7,35 @@ class Stack extends BaseApi
 
     public function index(){
         $responses = $this->getClient()->makeRequest("GET", "/api/v1/stack/");
-        $this->generateGettersSetters(end($responses->objects));
-        $services = [];
+        #$this->generateGettersSetters(end($responses->objects));
+        $stacks = [];
         foreach($responses->objects as $response){
-            $service = $this->getServiceFromResponse($response);
-            $services[] = $service;
+            $stack = $this->getStackFromResponse($response);
+            $stacks[] = $stack;
         }
-        return $services;
+        return $stacks;
     }
 
-    public function find($uuid, Models\Stack & $service = null){
+    public function find($uuid, Models\Stack & $stack = null){
         $response = $this->getClient()->makeRequest("GET", "/api/v1/stack/{$uuid}/");
-        $stack = $this->getStackFromResponse($response, $service);
+        $stack = $this->getStackFromResponse($response, $stack);
         return $stack;
     }
 
-    public function getStackFromResponse($response, Models\Service $service = null){
-        // TODO
+    public function getStackFromResponse($response, Models\Stack $stack = null){
+        if($stack === null) {
+            $stack = new Models\Stack();
+        }
+
+        $stack->setDeployedDatetime($response->deployed_datetime);
+        $stack->setDestroyedDatetime($response->destroyed_datetime);
+        $stack->setName($response->name);
+        $stack->setResourceUri($response->resource_uri);
+        $stack->setServices($response->services);
+        $stack->setState($response->state);
+        $stack->setSynchronized($response->synchronized);
+        $stack->setUuid($response->uuid);
+
+        return $stack;
     }
 }

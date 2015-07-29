@@ -35,34 +35,47 @@ class BaseApi
     }
 
     public function generateGettersSetters($response){
+        $type = get_called_class();
+        $bits = explode("\\", $type);
+        $type = end($bits);
+        $type = ucfirst($type);
+        $type_lower = strtolower($type);
+        echo "<pre>";
+        foreach (get_object_vars($response) as $var => $a) {
+            $variableName = $this->_snakeToCamel($var, true);
 
-            echo "<pre>";
-            foreach (get_object_vars($response) as $var => $a) {
-                $variableName = $this->_snakeToCamel($var, true);
+            echo "protected \${$variableName};\n";
+        }
+        echo "\n";
 
-                echo "protected \${$variableName};\n";
-            }
-            echo "\n";
-            foreach (get_object_vars($response) as $var => $a) {
-                $variableName = $this->_snakeToCamel($var, true);
-                $functionName = $this->_snakeToCamel($var, false);
-                echo "public function get{$functionName}(){\n";
-                echo "  return \$this->{$variableName};\n";
-                echo "}\n\n";
-                echo "public function set{$functionName}(\${$variableName}){\n";
-                echo "  \$this->$variableName = \${$variableName};\n";
-                echo "}\n\n";
-            }
+        foreach (get_object_vars($response) as $var => $a) {
+            $variableName = $this->_snakeToCamel($var, true);
+            $functionName = $this->_snakeToCamel($var, false);
+            echo "public function get{$functionName}(){\n";
+            echo "  return \$this->{$variableName};\n";
+            echo "}\n\n";
+            echo "public function set{$functionName}(\${$variableName}){\n";
+            echo "  \$this->$variableName = \${$variableName};\n";
+            echo "}\n\n";
+        }
+        echo "  \n";
 
-            echo "foreach(\$responses as \$response){\n";
-            echo "  \$service = new Service();\n";
-            foreach (get_object_vars($response) as $var => $a) {
-                $variableName = $this->_snakeToCamel($var, true);
-                $functionName = $this->_snakeToCamel($var, false);
-                echo "  \$service->set{$functionName}(\$response->{$var});\n";
-            }
-            echo "}";
-            exit;
+        echo "public function get{$type}FromResponse(\$response, Models\\{$type} \${$type_lower} = null){\n";
+        echo "  if(\${$type_lower} === null) {\n";
+        echo "    \${$type_lower} = new Models\\{$type}();\n";
+        echo "  }\n";
+        echo "  \n";
+        foreach (get_object_vars($response) as $var => $a) {
+            $variableName = $this->_snakeToCamel($var, true);
+            $functionName = $this->_snakeToCamel($var, false);
+            echo "  \${$type_lower}->set{$functionName}(\$response->{$var});\n";
+        }
+        echo "  \n";
+        echo "  return \${$type_lower};\n";
+        echo "}";
+        echo "\n";
+
+        exit;
 
     }
 }

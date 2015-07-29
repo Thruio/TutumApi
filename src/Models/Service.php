@@ -3,7 +3,7 @@ namespace Thru\TutumApi\Models;
 
 use Thru\TutumApi\Client;
 
-class Service
+class Service extends Model
 {
     protected $autodestroy;
     protected $autoredeploy;

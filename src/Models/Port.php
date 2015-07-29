@@ -1,7 +1,7 @@
 <?php
 namespace Thru\TutumApi\Models;
 
-class Port
+class Port extends Model
 {
 
     protected $endpoint;

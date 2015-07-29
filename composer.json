@@ -6,13 +6,19 @@
             "email": "matthew@baggett.me"
         }
     ],
-    "require": {},
+    "minimum-stability": "dev",
+    "require": {
+        "guzzlehttp/guzzle": "^5.0"
+    },
     "require-dev": {
+        "thru.io/uuid": "dev-master",
         "phpunit/phpunit": ">=4.7",
         "codeclimate/php-test-reporter": "dev-master",
         "fzaninotto/faker": "1.5.*@dev",
         "raveren/kint": "dev-master",
-        "brianium/paratest": "dev-master"
+        "brianium/paratest": "dev-master",
+        "php-vcr/php-vcr": "^1.2",
+        "symfony/yaml": "2.6.6"
     },
     "autoload"   : {
         "psr-4": {
