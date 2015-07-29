@@ -1,0 +1,10 @@
+{
+    "name": "thru.io/tutum-api",
+    "authors": [
+        {
+            "name": "Matthew Baggett",
+            "email": "matthew@baggett.me"
+        }
+    ],
+    "require": {}
+}
