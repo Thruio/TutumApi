@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e040f043d62a93462a39d93a35136a7e",
+    "hash": "320dcfd35f554f0fcf2583c7830756e2",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -1711,29 +1711,29 @@
         },
         {
             "name": "symfony/config",
-            "version": "dev-master",
+            "version": "2.8.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Config.git",
-                "reference": "1fcd68c10db2cc669aa44cc3602740ffc131d3ff"
+                "reference": "358ec929e494b6f12d8508d88357cbd7383a10ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Config/zipball/1fcd68c10db2cc669aa44cc3602740ffc131d3ff",
-                "reference": "1fcd68c10db2cc669aa44cc3602740ffc131d3ff",
+                "url": "https://api.github.com/repos/symfony/Config/zipball/358ec929e494b6f12d8508d88357cbd7383a10ca",
+                "reference": "358ec929e494b6f12d8508d88357cbd7383a10ca",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9",
-                "symfony/filesystem": "~2.8|~3.0"
+                "php": ">=5.3.9",
+                "symfony/filesystem": "~2.3|~3.0.0"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "~2.8|~3.0"
+                "symfony/phpunit-bridge": "~2.7|~3.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -1757,7 +1757,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-09 16:12:34"
+            "time": "2015-07-09 16:11:14"
         },
         {
             "name": "symfony/console",
@@ -1876,28 +1876,28 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "dev-master",
+            "version": "2.8.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Filesystem.git",
-                "reference": "8b4a1ddbdcaf3b163443168c8f49c1c14a584ddf"
+                "reference": "9f70c5625a32b2f1e6fc37222f52b4e0eb437b0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/8b4a1ddbdcaf3b163443168c8f49c1c14a584ddf",
-                "reference": "8b4a1ddbdcaf3b163443168c8f49c1c14a584ddf",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/9f70c5625a32b2f1e6fc37222f52b4e0eb437b0e",
+                "reference": "9f70c5625a32b2f1e6fc37222f52b4e0eb437b0e",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9"
+                "php": ">=5.3.9"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "~2.8|~3.0"
+                "symfony/phpunit-bridge": "~2.7|~3.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -1921,7 +1921,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-09 16:12:34"
+            "time": "2015-07-09 16:11:14"
         },
         {
             "name": "symfony/process",
@@ -1974,28 +1974,28 @@
         },
         {
             "name": "symfony/stopwatch",
-            "version": "dev-master",
+            "version": "2.8.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Stopwatch.git",
-                "reference": "5a343d48394e3a374f8659ecb2aa9f623d5f4451"
+                "reference": "cd5f0dc1d3d0e2c83461dad77e20a9186beb6146"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Stopwatch/zipball/5a343d48394e3a374f8659ecb2aa9f623d5f4451",
-                "reference": "5a343d48394e3a374f8659ecb2aa9f623d5f4451",
+                "url": "https://api.github.com/repos/symfony/Stopwatch/zipball/cd5f0dc1d3d0e2c83461dad77e20a9186beb6146",
+                "reference": "cd5f0dc1d3d0e2c83461dad77e20a9186beb6146",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9"
+                "php": ">=5.3.9"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "~2.8|~3.0"
+                "symfony/phpunit-bridge": "~2.7|~3.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -2019,7 +2019,7 @@
             ],
             "description": "Symfony Stopwatch Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-01 20:40:29"
+            "time": "2015-07-01 18:24:26"
         },
         {
             "name": "symfony/yaml",

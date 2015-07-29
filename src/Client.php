@@ -29,6 +29,7 @@ class Client
             ]
           ]
         ]);
+        
     }
 
     static public function configure($username, $apiKey){
