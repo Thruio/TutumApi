@@ -8,7 +8,9 @@ class StackModelTest extends BaseTest
 {
     public function testStackServices(){
         $stack = Client::getInstance()->stacks()->findByName("Thruio");
-        var_dump($stack->getServices());
+        $services = $stack->getServices();
+        $this->putExpectation("Stack/Model", reset($services));
+        $this->assertEquals($this->getExpectation("Stack/Model"), reset($services));
 
     }
 }

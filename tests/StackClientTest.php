@@ -23,7 +23,7 @@ class StackClientTest extends BaseTest
 
     public function testStackFindByName(){
         $stack = Client::getInstance()->stacks()->findByName("Thruio");
-        $this->putExpectation("Stack/FindByName", $stack);
+        #$this->putExpectation("Stack/FindByName", $stack);
         $this->assertEquals($this->getExpectation("Stack/FindByName"), $stack);
     }
 }
