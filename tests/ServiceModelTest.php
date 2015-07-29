@@ -23,10 +23,15 @@ class ServiceModelTest extends BaseTest
         $this->assertEquals([], (array) $service->getBindings());
 $this->putExpectation("Service/Properties/CalculatedEnvvars", $service->getCalculatedEnvvars());
         $this->assertEquals($this->getExpectation("Service/Properties/CalculatedEnvvars"), $service->getCalculatedEnvvars());
-        $this->assertEquals([], (array) $service->getContainerEnvvars());
-        $this->assertEquals([], (array) $service->getContainerPorts());
-        $this->assertEquals([], $service->getContainers());
-        $this->assertEquals([], $service->getContainerPorts());
+        $this->putExpectation("Service/Properties/ContainerEnvvars", $service->getContainerEnvvars());
+        $this->assertEquals($this->getExpectation("Service/Properties/ContainerEnvvars"), (array) $service->getContainerEnvvars());
+        $this->putExpectation("Service/Properties/ContainerPorts", $service->getContainerPorts());
+        $this->assertEquals($this->getExpectation("Service/Properties/ContainerPorts"), (array) $service->getContainerPorts());
+        $this->putExpectation("Service/Properties/Containers", $service->getContainers());
+        $this->assertEquals($this->getExpectation("Service/Properties/Containers"), $service->getContainers());
+        $this->putExpectation("Service/Properties/ContainerPorts", $service->getContainerPorts());
+        $this->assertEquals($this->getExpectation("Service/Properties/ContainerPorts"), $service->getContainerPorts());
         $this->assertEquals(3, $service->getCurrentNumContainers());
+
     }
 }
