@@ -4,3 +4,4 @@ clover.xml
 composer.lock
 coverage-report
 .idea
+.phpunit-cas.db

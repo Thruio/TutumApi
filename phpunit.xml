@@ -1,21 +1,29 @@
 <phpunit bootstrap="bootstrap.php"
          colors="true"
-         stopOnFailure="false">
-  <testsuites>
-    <testsuite name="all">
-      <directory>tests</directory>
-    </testsuite>
-  </testsuites>
+         stopOnFailure="true">
+    <testsuites>
+        <testsuite name="all">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
 
-  <logging>
-    <log type="coverage-text" target="php://stdout" showUncoveredFiles="true"/>
-    <log type="coverage-clover" target="clover.xml"/>
-    <log type="coverage-html" target="coverage-report"/>
-  </logging>
+    <logging>
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="true"/>
+        <log type="coverage-clover" target="clover.xml"/>
+        <log type="coverage-html" target="coverage-report"/>
+    </logging>
 
-  <filter>
-    <whitelist processUncoveredFilesFromWhitelist="true">
-      <directory>src</directory>
-    </whitelist>
-  </filter>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory>src</directory>
+        </whitelist>
+    </filter>
+
+    <listeners>
+        <listener class="PHPUnit\Runner\CleverAndSmart\TestListener">
+            <arguments>
+                <object class="PHPUnit\Runner\CleverAndSmart\Storage\Sqlite3Storage"/>
+            </arguments>
+        </listener>
+    </listeners>
 </phpunit>
