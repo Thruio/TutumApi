@@ -1,7 +1,7 @@
 <?php
-namespace Status\TutumApi\Services;
+namespace Thru\TutumApi\Services;
 
-use Status\TutumApi\Client;
+use Thru\TutumApi\Client;
 
 class BaseApi
 {

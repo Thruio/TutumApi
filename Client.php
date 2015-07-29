@@ -1,5 +1,5 @@
 <?php
-namespace Status\TutumApi;
+namespace Thru\TutumApi;
 
 use GuzzleHttp;
 
@@ -58,6 +58,10 @@ class Client
             throw new \Exception("Server did not send JSON.");
         }
         return $json;
+    }
+
+    public function stacks(){
+        return new Services\Stack($this);
     }
 
     public function services(){

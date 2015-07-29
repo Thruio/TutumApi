@@ -1,7 +1,7 @@
 <?php
-namespace Status\TutumApi\Models;
+namespace Thru\TutumApi\Models;
 
-use Status\TutumApi\Client;
+use Thru\TutumApi\Client;
 
 class Service
 {

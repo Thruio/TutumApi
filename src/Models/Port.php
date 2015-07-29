@@ -1,5 +1,5 @@
 <?php
-namespace Status\TutumApi\Models;
+namespace Thru\TutumApi\Models;
 
 class Port
 {

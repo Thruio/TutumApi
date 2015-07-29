@@ -1,6 +1,6 @@
 <?php
-namespace Status\TutumApi\Services;
-use Status\TutumApi\Models;
+namespace Thru\TutumApi\Services;
+use Thru\TutumApi\Models;
 
 class Container extends BaseApi
 {
