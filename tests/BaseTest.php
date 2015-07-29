@@ -13,7 +13,9 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
     public function setUp(){
         parent::setUp();
         VCR::turnOn();
-        VCR::insertCassette($this->getName());
+        $calledClass = explode("\\", get_called_class());
+        $cassette = end($calledClass) . "/" . $this->getName();
+        VCR::insertCassette($cassette);
         Client::configure('matthewbaggett', 'decea003584f7df33be57f547f63f2cccd8e3188');
         $this->apiClient = Client::getInstance();
     }

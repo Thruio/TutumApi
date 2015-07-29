@@ -4,7 +4,7 @@ namespace Thru\TutumApi\Test;
 
 use Thru\TutumApi\Client;
 
-class StackTest extends BaseTest
+class StackClientTest extends BaseTest
 {
     public function testStackList(){
         $stacks = Client::getInstance()->stacks()->index();
