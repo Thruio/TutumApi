@@ -5,6 +5,10 @@ use Thru\TutumApi\Models;
 class Stack extends BaseApi
 {
 
+    /**
+     * @return Models\Stack[]
+     * @throws \Exception
+     */
     public function index(){
         $responses = $this->getClient()->makeRequest("GET", "/api/v1/stack/");
         #$this->generateGettersSetters(end($responses->objects));
@@ -16,10 +20,30 @@ class Stack extends BaseApi
         return $stacks;
     }
 
+    /**
+     * @param $uuid
+     * @param Models\Stack|null $stack
+     * @return Models\Stack
+     * @throws \Exception
+     */
     public function find($uuid, Models\Stack & $stack = null){
         $response = $this->getClient()->makeRequest("GET", "/api/v1/stack/{$uuid}/");
         $stack = $this->getStackFromResponse($response, $stack);
         return $stack;
+    }
+
+    /**
+     * @param $name
+     * @return false|Models\Stack
+     */
+    public function findByName($name){
+        $stacks = $this->index();
+        foreach($stacks as $stack){
+            if($stack->getName() == $name){
+                return $stack;
+            }
+        }
+        return false;
     }
 
     public function getStackFromResponse($response, Models\Stack $stack = null){
