@@ -170,4 +170,15 @@ class ServiceModelTest extends BaseTest
         $this->assertEquals(null, $service->getTags());
 
     }
+
+    public function testRelatedObjects(){
+        $webservice = Client::getInstance()->services()->find('6fe506a6-a85c-4bcf-9398-f1429657f4df');
+        $mysqlService = Client::getInstance()->services()->find('4f07a3fa-5101-43c4-a973-a23571e88a53');
+        $loadBalancerService = Client::getInstance()->services()->find('7a613296-e861-47c7-98c5-05f75b760bcf');
+        $this->assertContainsOnlyInstancesOf("\\Thru\\TutumApi\\Models\\Container", $webservice->getContainers());
+        $this->assertContainsOnlyInstancesOf("\\Thru\\TutumApi\\Models\\Service", $webservice->getLinkedFromService());
+        $this->assertContainsOnlyInstancesOf("\\Thru\\TutumApi\\Models\\Service", $mysqlService->getLinkedToService());
+        $this->assertContainsOnlyInstancesOf("\\Thru\\TutumApi\\Models\\Service", $loadBalancerService->getLinkedToExternalService());
+        $this->assertContainsOnlyInstancesOf("\\Thru\\TutumApi\\Models\\Port", $webservice->getContainerPorts());
+    }
 }

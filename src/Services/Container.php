@@ -5,10 +5,39 @@ use Thru\TutumApi\Models;
 class Container extends BaseApi
 {
 
+    /**
+     * @return Models\Container[]
+     * @throws \Exception
+     */
+    public function index(){
+        $responses = $this->getClient()->makeRequest("GET", "/api/v1/container/");
+        #$this->generateGettersSetters(end($responses->objects));
+        $containers = [];
+        foreach($responses->objects as $response){
+            $container = $this->getContainerFromResponse($response);
+            $containers[] = $container;
+        }
+        return $containers;
+    }
+
     public function find($uuid, Models\Container & $container = null){
         $response = $this->getClient()->makeRequest("GET", "/api/v1/container/{$uuid}/");
         $container = $this->getContainerFromResponse($response, $container);
         return $container;
+    }
+
+    /**
+     * @param $name
+     * @return false|Models\Container
+     */
+    public function findByName($name){
+        $containers = $this->index();
+        foreach($containers as $container){
+            if($container->getName() == $name){
+                return $container;
+            }
+        }
+        return false;
     }
 
     public function getContainerFromResponse($response, Models\Container $container = null){

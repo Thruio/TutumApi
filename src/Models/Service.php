@@ -39,4 +39,43 @@ class Service extends BaseService
         }
         return $containers;
     }
+
+    /**
+     * @return Service[]
+     */
+    public function getLinkedFromService(){
+        $linkedServices = [];
+        if(count(parent::getLinkedFromService())) {
+            foreach (parent::getLinkedFromService() as $service) {
+                $linkedServices[] = Client::getInstance()->services()->find($service->from_service);
+            }
+        }
+        return $linkedServices;
+    }
+
+    /**
+     * @return Service[]
+     */
+    public function getLinkedToService(){
+        $linkedServices = [];
+        if(count(parent::getLinkedToService())){
+            foreach(parent::getLinkedToService() as $service){
+                $linkedServices[] = Client::getInstance()->services()->find($service->to_service);
+            }
+        }
+        return $linkedServices;
+    }
+
+    /**
+     * @return Service[]
+     */
+    public function getLinkedToExternalService(){
+        $linkedServices = [];
+        if(count(parent::getLinkedToExternalService())) {
+            foreach (parent::getLinkedToExternalService() as $service) {
+                $linkedServices[] = Client::getInstance()->services()->find($service->to_service);
+            }
+        }
+        return $linkedServices;
+    }
 }

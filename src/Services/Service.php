@@ -5,6 +5,10 @@ use Thru\TutumApi\Models;
 class Service extends BaseApi
 {
 
+    /**
+     * @return Models\Service[]
+     * @throws \Exception
+     */
     public function index(){
         $responses = $this->getClient()->makeRequest("GET", "/api/v1/service/");
         //$this->generateGettersSetters(end($responses->objects));
@@ -17,9 +21,25 @@ class Service extends BaseApi
     }
 
     public function find($uuid, Models\Service & $service = null){
+        $uuid = trim($uuid, "/");
+        $uuid = str_replace("api/v1/service/", "", $uuid);
         $response = $this->getClient()->makeRequest("GET", "/api/v1/service/{$uuid}/");
         $service = $this->getServiceFromResponse($response, $service);
         return $service;
+    }
+
+    /**
+     * @param $name
+     * @return false|Models\Service
+     */
+    public function findByName($name){
+        $services = $this->index();
+        foreach($services as $service){
+            if($service->getName() == $name){
+                return $service;
+            }
+        }
+        return false;
     }
 
     public function getServiceFromResponse($response, Models\Service $service = null){
