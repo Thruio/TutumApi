@@ -31,7 +31,7 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
 
     public function putExpectation($name, $data){
         if(!file_exists(dirname($this->getExpectationName($name)))){
-            mkdir(dirname($this->getExpectationName($name)), null, true);
+            mkdir(dirname($this->getExpectationName($name)), 0777, true);
         }
 
         file_put_contents($this->getExpectationName($name), serialize($data));

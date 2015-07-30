@@ -72,7 +72,25 @@ class BaseApi
         }
         echo "  \n";
         echo "  return \${$type_lower};\n";
-        echo "}";
+        echo "}\n";
+        echo "\n";
+
+        echo "/**\n";
+        echo " * @depends \n";
+        echo " * @param Models\\{$type} \${$type_lower}\n";
+        echo " */\n";
+        echo "public function test{$type}Parameters(Models\\{$type} \${$type_lower}){\n";
+        foreach (get_object_vars($response) as $var => $a) {
+            $variableName = $this->_snakeToCamel($var, true);
+            $functionName = $this->_snakeToCamel($var, false);
+            $comment = "get{$functionName} did not return expected result";
+            if(is_object($a) || (is_array($a) && is_object(end($a)))){
+                echo "  \$this->assertEquals(" . var_export_compact(arrayify($a)) . ", arrayify(\${$type_lower}->get{$functionName}()), '{$comment}');\n";
+            }else {
+                echo "  \$this->assertEquals(" . var_export_compact($a) . ", \${$type_lower}->get{$functionName}(), '{$comment}');\n";
+            }
+        }
+        echo "}\n";
         echo "\n";
 
         exit;

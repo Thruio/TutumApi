@@ -72,4 +72,8 @@ class Client
     public function containers(){
         return new Services\Container($this);
     }
+
+    public function nodes(){
+        return new Services\Node($this);
+    }
 }
