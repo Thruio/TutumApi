@@ -4,6 +4,18 @@ use Thru\TutumApi\Models;
 
 class Stack extends BaseApi
 {
+    public function create($name){
+        $responses = $this->getClient()->makeRequest(
+          "POST",
+          "/api/v1/stack/",
+          [
+            'body' => json_encode([
+                'name' => $name,
+            ])
+          ]
+        );
+        return self::find($responses->uuid);
+    }
 
     /**
      * @return Models\Stack[]
