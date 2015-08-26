@@ -25,11 +25,32 @@ class Stack extends BaseApi
         $responses = $this->getClient()->makeRequest("GET", "/api/v1/stack/");
         #$this->generateGettersSetters(end($responses->objects));
         $stacks = [];
-        foreach($responses->objects as $response){
-            $stack = $this->getStackFromResponse($response);
-            $stacks[] = $stack;
+
+        if(count($responses->objects) > 0) {
+            foreach ($responses->objects as $response) {
+                $stack = $this->getStackFromResponse($response);
+                $stacks[] = $stack;
+            }
         }
         return $stacks;
+    }
+
+    public function export($uuid){
+        $response = $this->getClient()->makeRequest("GET", "/api/v1/stack/{$uuid}/export");
+        return $response;
+    }
+
+    public function import($uuid, $services){
+        $body = json_encode([
+          'services' => $services,
+        ]);
+        $headers = [
+          'Content-Type' => 'application/json'
+        ];
+        echo "yo";
+        $response = $this->getClient()->makeRequest("PATCH", "/api/v1/stack/{$uuid}/", ['body' => $body, 'headers' => $headers]);
+        echo "here";
+        return $this->getStackFromResponse($response);
     }
 
     /**
@@ -58,10 +79,11 @@ class Stack extends BaseApi
         return false;
     }
 
-    public function getStackFromResponse($response, Models\Stack $stack = null){
+    public function getStackFromResponse($response, Models\Stack &$stack = null){
         if($stack === null) {
             $stack = new Models\Stack();
         }
+
 
         $stack->setDeployedDatetime($response->deployed_datetime);
         $stack->setDestroyedDatetime($response->destroyed_datetime);

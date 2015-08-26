@@ -18,4 +18,17 @@ class Stack extends BaseStack
         }
         return $services;
     }
+
+    public function addService(Service $service){
+        $services = [];
+        foreach(Client::getInstance()->stacks()->export($this->getUuid()) as $name => $serviceRunning){
+            $serviceRunning->name = $name;
+            $services[$name] = (array)$serviceRunning;
+        }
+        #\Kint::dump($services);
+        $newServiceArray = $service->__toArray();
+        $services[$newServiceArray['name']] = $newServiceArray;
+        #\Kint::dump($services);
+       return Client::getInstance()->stacks()->import($this->getUuid(), array_values($services));
+    }
 }

@@ -5,9 +5,9 @@ use Thru\TutumApi\Client;
 
 class BaseService extends Model
 {
-    protected $autodestroy;
-    protected $autoredeploy;
-    protected $autorestart;
+    protected $autodestroy = "OFF";
+    protected $autoredeploy = false;
+    protected $autorestart = "ON_FAILURE";
     protected $bindings;
     protected $calculatedEnvvars;
     protected $containerEnvvars;

@@ -1,5 +1,6 @@
 <?php
 namespace Thru\TutumApi\Services;
+use GuzzleHttp\Exception\ClientException;
 use Thru\TutumApi\Models;
 
 class Service extends BaseApi
@@ -84,5 +85,25 @@ class Service extends BaseApi
         $service->setUuid($response->uuid);
         $service->setWorkingDir($response->working_dir);
         return $service;
+    }
+
+    public function startService($uuid){
+        $body = [
+            'uuid' => $uuid
+        ];
+        $headers = [
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json'
+        ];
+        try {
+            $response = $this->getClient()->makeRequest("POST", "/api/v1/service/{$uuid}/start",
+              ['body' => $body, 'headers' => $headers]);
+        }Catch(ClientException $ce){
+            \Kint::dump($ce);
+            exit;
+        }
+        \Kint::dump($response);
+        exit;
+
     }
 }

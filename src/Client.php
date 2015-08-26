@@ -19,7 +19,7 @@ class Client
         $this->username = $username;
         $this->apiKey = $apiKey;
 
-        $this->client = new GuzzleHttp\Client([
+        $config = [
             // Define request defaults
           'base_url' => $this->baseUrl,
           'defaults' => [
@@ -28,7 +28,9 @@ class Client
               'Accepts' => 'application/json'
             ]
           ]
-        ]);
+        ];
+//\Kint::dump($config['defaults']['headers']);
+        $this->client = new GuzzleHttp\Client($config);
         
     }
 
@@ -51,13 +53,17 @@ class Client
     public function makeRequest($type, $method, $options = []){
 
         $request = $this->client->createRequest($type, $method, $options);
+        \Kint::dump($request);
         $res = $this->client->send($request);
+        \Kint::dump($res);
+
 
         if($res->getHeader('content-type') == 'application/json'){
             $json = json_decode($res->getBody()->getContents());
         }else{
             throw new \Exception("Server did not send JSON.");
         }
+
         return $json;
     }
 
