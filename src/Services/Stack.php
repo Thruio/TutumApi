@@ -70,7 +70,7 @@ class Stack extends BaseApi
     public function findByName($name){
         $stacks = $this->index();
         foreach($stacks as $stack){
-            if($stack->getName() == $name){
+            if($stack->getName() == $name && $stack->getState() != "Terminated"){
                 return $stack;
             }
         }
