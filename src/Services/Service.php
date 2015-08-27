@@ -88,22 +88,38 @@ class Service extends BaseApi
     }
 
     public function startService($uuid){
-        $body = [
-            'uuid' => $uuid
-        ];
-        $headers = [
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json'
-        ];
-        try {
-            $response = $this->getClient()->makeRequest("POST", "/api/v1/service/{$uuid}/start",
-              ['body' => $body, 'headers' => $headers]);
-        }Catch(ClientException $ce){
-            \Kint::dump($ce);
-            exit;
-        }
-        \Kint::dump($response);
-        exit;
+        $response = $this->getClient()->makeRequest(
+          "POST",
+          "/api/v1/service/{$uuid}/start/",
+          [
+            'body' => ['uuid' => $uuid],
+            'headers' => [
+              'Accept' => 'application/json',
+              'Content-Type' => 'application/json'
+            ],
+            'allow_redirects' => false
+          ]
+        );
 
+        $service = $this->getServiceFromResponse($response);
+        return $service;
+    }
+
+    public function stopService($uuid){
+        $response = $this->getClient()->makeRequest(
+          "POST",
+          "/api/v1/service/{$uuid}/stop/",
+          [
+            'body' => ['uuid' => $uuid],
+            'headers' => [
+              'Accept' => 'application/json',
+              'Content-Type' => 'application/json'
+            ],
+            'allow_redirects' => false
+          ]
+        );
+
+        $service = $this->getServiceFromResponse($response);
+        return $service;
     }
 }

@@ -53,15 +53,12 @@ class Client
     public function makeRequest($type, $method, $options = []){
 
         $request = $this->client->createRequest($type, $method, $options);
-        \Kint::dump($request);
         $res = $this->client->send($request);
-        \Kint::dump($res);
-
 
         if($res->getHeader('content-type') == 'application/json'){
             $json = json_decode($res->getBody()->getContents());
         }else{
-            throw new \Exception("Server did not send JSON.");
+            throw new \Exception("Server did not send JSON. Response was \"{$res->getBody()->getContents()}\"");
         }
 
         return $json;

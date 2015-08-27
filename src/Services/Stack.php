@@ -47,9 +47,7 @@ class Stack extends BaseApi
         $headers = [
           'Content-Type' => 'application/json'
         ];
-        echo "yo";
         $response = $this->getClient()->makeRequest("PATCH", "/api/v1/stack/{$uuid}/", ['body' => $body, 'headers' => $headers]);
-        echo "here";
         return $this->getStackFromResponse($response);
     }
 

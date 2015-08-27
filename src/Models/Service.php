@@ -100,30 +100,50 @@ class Service extends BaseService
         ];
     }
 
+    /**
+     * @return Service
+     * @throws \Exception
+     */
     public function start(){
-        Client::getInstance()->services()->startService($this->getUuid());
-        return $this;
+        $service = Client::getInstance()->services()->startService($this->getUuid());
+        return $service;
     }
 
+    /**
+     * @return Service
+     * @throws \Exception
+     */
     public function stop(){
-        Client::getInstance()->services()->stopService($this->getUuid());
-        return $this;
+        $service = Client::getInstance()->services()->stopService($this->getUuid());
+        return $service;
     }
 
+    /**
+     * @return Service
+     * @throws \Exception
+     */
     public function scale(){
         // TODO: make this accept an argument for target_num_containers
-        Client::getInstance()->services()->scaleService($this->getUuid());
-        return $this;
+        $service = Client::getInstance()->services()->scaleService($this->getUuid());
+        return $service;
     }
 
+    /**
+     * @return Service
+     * @throws \Exception
+     */
     public function redeploy(){
-        Client::getInstance()->services()->redeployService($this->getUuid());
-        return $this;
+        $service = Client::getInstance()->services()->redeployService($this->getUuid());
+        return $service;
     }
 
+    /**
+     * @return Service
+     * @throws \Exception
+     */
     public function terminate(){
-        Client::getInstance()->services()->terminateService($this->getUuid());
-        return $this;
+        $service = Client::getInstance()->services()->terminateService($this->getUuid());
+        return $service;
     }
 
 
