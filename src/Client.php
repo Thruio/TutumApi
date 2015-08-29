@@ -26,10 +26,11 @@ class Client
             'headers' => [
               'Authorization' => 'ApiKey ' . $this->username . ':' . $this->apiKey,
               'Accepts' => 'application/json'
-            ]
+            ],
+            // I hate guzzle. TODO: Make this detect retarded windows machines.
+            'verify' => false
           ]
         ];
-//\Kint::dump($config['defaults']['headers']);
         $this->client = new GuzzleHttp\Client($config);
         
     }
