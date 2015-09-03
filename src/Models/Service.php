@@ -142,13 +142,18 @@ class Service extends BaseService
                     $portArray['protocol'] = 'tcp';
                 }
                 if ($port->isPublished()){
-
+                    $portArray['published'] = true;
                 }
                 $ports[] = $portArray;
             }
         }
 
-        return [
+        $tags = [];
+        foreach($this->getTags() as $tag){
+            $tags[] = ['name' => $tag];
+        }
+
+        $array = [
           'name' => $this->getName(),
           'image' => $this->getImageName(),
           'container_ports' => $ports,
@@ -157,8 +162,12 @@ class Service extends BaseService
           'autoredeploy' => $this->getAutoredeploy(),
           'autodestroy' => $this->getAutodestroy(),
           'deployment_strategy' => $this->getDeploymentStrategy(),
-          'tags' => [['name' => 'cminfra']],
+          'tags' => $tags
         ];
+
+
+
+        return $array;
     }
 
     /**

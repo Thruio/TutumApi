@@ -4,7 +4,7 @@ namespace Thru\TutumApi\Models;
 
 class Port extends BasePort
 {
-    static public function Build($internal = null, $external = null){
+    static public function Build($internal = null, $external = null, $public = false){
         $port = new self();
         if($internal){
             $port->setInnerPort($internal);
@@ -13,6 +13,7 @@ class Port extends BasePort
             $port->setOuterPort($external);
             $port->setIsPublished(true);
         }
+        $port->setIsPublished($public);
         return $port;
     }
 }
