@@ -27,6 +27,9 @@ class Stack extends BaseStack
         }
         $newServiceArray = $service->__toArray();
         $services[$newServiceArray['name']] = $newServiceArray;
-        return Client::getInstance()->stacks()->import($this->getUuid(), array_values($services));
+
+        $result = Client::getInstance()->stacks()->import($this->getUuid(), array_values($services));
+
+        return $result;
     }
 }

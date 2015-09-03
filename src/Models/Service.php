@@ -2,6 +2,7 @@
 namespace Thru\TutumApi\Models;
 
 use Thru\TutumApi\Client;
+use Thru\TutumApi\Util;
 
 class Service extends BaseService
 {
@@ -154,18 +155,16 @@ class Service extends BaseService
         }
 
         $array = [
-          'name' => $this->getName(),
+          'name' => Util::Slugify($this->getName()),
           'image' => $this->getImageName(),
           'container_ports' => $ports,
           'target_num_containers' => $this->getTargetNumContainers(),
           'restart' => strtolower(str_replace("_", "-", $this->getAutorestart())),
-          'autoredeploy' => $this->getAutoredeploy(),
+          #'autoredeploy' => $this->getAutoredeploy(),
           'autodestroy' => $this->getAutodestroy(),
           'deployment_strategy' => $this->getDeploymentStrategy(),
           'tags' => $tags
         ];
-
-
 
         return $array;
     }
