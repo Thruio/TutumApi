@@ -18,8 +18,6 @@ class BaseApi
         return $this->client;
     }
 
-
-
     /*
      * Ultimately, I am lazy, so I wrote a thing to make getters/setters based on the API response.
      */

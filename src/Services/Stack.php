@@ -40,25 +40,25 @@ class Stack extends BaseApi
 
     public function start($uuid)
     {
-        $response = $this->getClient()->makeRequest("POST", "/api/v1/stack/{$uuid}/start");
+        $response = $this->getClient()->makeRequest("POST", "/api/v1/stack/{$uuid}/start/");
         return $response;
     }
 
     public function stop($uuid)
     {
-        $response = $this->getClient()->makeRequest("POST", "/api/v1/stack/{$uuid}/stop");
+        $response = $this->getClient()->makeRequest("POST", "/api/v1/stack/{$uuid}/stop/");
         return $response;
     }
 
     public function terminate($uuid)
     {
-        $response = $this->getClient()->makeRequest("POST", "/api/v1/stack/{$uuid}/terminate");
+        $response = $this->getClient()->makeRequest("DELETE", "/api/v1/stack/{$uuid}/terminate/");
         return $response;
     }
 
     public function redeploy($uuid)
     {
-        $response = $this->getClient()->makeRequest("POST", "/api/v1/stack/{$uuid}/redeploy");
+        $response = $this->getClient()->makeRequest("POST", "/api/v1/stack/{$uuid}/redeploy/");
         return $response;
     }
 
@@ -76,7 +76,6 @@ class Stack extends BaseApi
         $headers = [
           'Content-Type' => 'application/json'
         ];
-        \Kint::dump($uuid, $body, $headers);
         $response = $this->getClient()->makeRequest(
             "PATCH",
             "/api/v1/stack/{$uuid}/",
@@ -121,7 +120,6 @@ class Stack extends BaseApi
         if ($stack === null) {
             $stack = new Models\Stack();
         }
-
 
         $stack->setDeployedDatetime($response->deployed_datetime);
         $stack->setDestroyedDatetime($response->destroyed_datetime);

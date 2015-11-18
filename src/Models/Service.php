@@ -6,6 +6,12 @@ use Thru\TutumApi\Util;
 
 class Service extends BaseService
 {
+    protected $environmentalVariables;
+
+    public function addEnvironmentVariable($key, $value)
+    {
+        $this->environmentalVariables[strtoupper($key)] = $value;
+    }
 
     public function setContainerPorts($ports)
     {
@@ -154,16 +160,29 @@ class Service extends BaseService
         }
 
         $tags = [];
-        foreach ($this->getTags() as $tag) {
-            $tags[] = ['name' => $tag];
+        if(count($this->getTags())) {
+            foreach ($this->getTags() as $tag) {
+                $tags[] = ['name' => $tag];
+            }
         }
 
         $linkedServices = [];
-        foreach ($this->linkedToService as $linkedToService) {
-            $linkedServices[] = [
-                'to_service' => $linkedToService->to_service,
-                'name' => $linkedToService->name
-            ];
+        if(count($this->linkedToService)) {
+            foreach ($this->linkedToService as $linkedToService) {
+                $linkedServices[] = [
+                    'to_service' => $linkedToService->to_service,
+                    'name' => $linkedToService->name
+                ];
+            }
+        }
+        $envvars = [];
+        if(count($this->environmentalVariables)){
+            foreach($this->environmentalVariables as $key => $value){
+                $envvars[] = [
+                    'key' => $key,
+                    'value' => $value,
+                ];
+            }
         }
 
         $array = [
@@ -175,9 +194,16 @@ class Service extends BaseService
           #'autoredeploy' => $this->getAutoredeploy(),
           'autodestroy' => $this->getAutodestroy(),
           'deployment_strategy' => $this->getDeploymentStrategy(),
-          'tags' => $tags,
-          'linked_to_service' => $linkedServices,
         ];
+        if($tags){
+            $array['tags'] = $tags;
+        }
+        if($tags){
+            $array['linked_to_service'] = $linkedServices;
+        }
+        if($envvars){
+            $array['container_envvars'] = $envvars;
+        }
 
         return $array;
     }
