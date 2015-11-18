@@ -14,7 +14,8 @@ class Stack extends BaseStack
         $services = [];
         foreach (parent::getServices() as $serviceUri) {
             $serviceUUID = str_replace("api/v1/service/", "", trim($serviceUri, "/"));
-            $services[] = Client::getInstance()->services()->find($serviceUUID);
+            $service = Client::getInstance()->services()->find($serviceUUID);
+            $services[$service->getName()] = $service;
         }
         return $services;
     }
@@ -51,6 +52,6 @@ class Stack extends BaseStack
     
     public function redeploy()
     {
-        return Client::getInstance()->stacks()->terminate($this->getUuid());
+        return Client::getInstance()->stacks()->redeploy($this->getUuid());
     }
 }
