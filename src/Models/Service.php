@@ -160,14 +160,14 @@ class Service extends BaseService
         }
 
         $tags = [];
-        if(count($this->getTags())) {
+        if (count($this->getTags())) {
             foreach ($this->getTags() as $tag) {
                 $tags[] = ['name' => $tag];
             }
         }
 
         $linkedServices = [];
-        if(count($this->linkedToService)) {
+        if (count($this->linkedToService)) {
             foreach ($this->linkedToService as $linkedToService) {
                 $linkedServices[] = [
                     'to_service' => $linkedToService->to_service,
@@ -176,8 +176,8 @@ class Service extends BaseService
             }
         }
         $envvars = [];
-        if(count($this->environmentalVariables)){
-            foreach($this->environmentalVariables as $key => $value){
+        if (count($this->environmentalVariables)) {
+            foreach ($this->environmentalVariables as $key => $value) {
                 $envvars[] = [
                     'key' => $key,
                     'value' => $value,
@@ -195,13 +195,13 @@ class Service extends BaseService
           'autodestroy' => $this->getAutodestroy(),
           'deployment_strategy' => $this->getDeploymentStrategy(),
         ];
-        if($tags){
+        if ($tags) {
             $array['tags'] = $tags;
         }
-        if($tags){
+        if ($tags) {
             $array['linked_to_service'] = $linkedServices;
         }
-        if($envvars){
+        if ($envvars) {
             $array['container_envvars'] = $envvars;
         }
 
