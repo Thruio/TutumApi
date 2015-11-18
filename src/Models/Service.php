@@ -135,7 +135,7 @@ class Service extends BaseService
                 $portArray = [];
                 $portArray['inner_port'] = $port->getInnerPort();
                 if ($port->getOuterPort()) {
-                    $portArray['outer_port'] = $port->getInnerPort();
+                    $portArray['outer_port'] = $port->getOuterPort();
                 }
                 if ($port->getProtocol()){
                     $portArray['protocol'] = $port->getProtocol();
