@@ -7,7 +7,8 @@ use Thru\TutumApi\Models;
 
 class ServiceModelTest extends BaseTest
 {
-    public function testStackServices(){
+    public function testStackServices()
+    {
         $stack = Client::getInstance()->stacks()->findByName("Thruio");
         $services = $stack->getServices();
         $this->putExpectation("Service/Model", reset($services));
@@ -15,7 +16,8 @@ class ServiceModelTest extends BaseTest
         $this->assertEquals($this->getExpectation("Stack/Model"), reset($services));
     }
 
-    public function testPropertiesWork(){
+    public function testPropertiesWork()
+    {
         $uuid = '6fe506a6-a85c-4bcf-9398-f1429657f4df';
         $service = Client::getInstance()->services()->find($uuid);
         $this->assertEquals("OFF", $service->getAutodestroy());
@@ -171,7 +173,8 @@ class ServiceModelTest extends BaseTest
 
     }
 
-    public function testRelatedObjects(){
+    public function testRelatedObjects()
+    {
         $webservice = Client::getInstance()->services()->find('6fe506a6-a85c-4bcf-9398-f1429657f4df');
         $mysqlService = Client::getInstance()->services()->find('4f07a3fa-5101-43c4-a973-a23571e88a53');
         $loadBalancerService = Client::getInstance()->services()->find('7a613296-e861-47c7-98c5-05f75b760bcf');

@@ -7,7 +7,8 @@ use Thru\TutumApi\Models;
 
 class NodeServiceTest extends BaseTest
 {
-    public function testNodeList(){
+    public function testNodeList()
+    {
         $nodes = Client::getInstance()->nodes()->index();
         $this->putExpectation("Nodes/IndexAll", $nodes);
         $this->putExpectation("Nodes/IndexOne", $nodes[0]);
@@ -16,7 +17,8 @@ class NodeServiceTest extends BaseTest
         $this->assertEquals($this->getExpectation("Nodes/IndexOne"), $nodes[0]);
     }
 
-    public function testNodeFindByUUID(){
+    public function testNodeFindByUUID()
+    {
         $node = Client::getInstance()->nodes()->find("3cb9e362-d4ef-4e4b-9ee6-280738b53172");
         $this->putExpectation("Nodes/FindByUUID", $node);
         $this->assertEquals($this->getExpectation("Nodes/FindByUUID"), $node);
@@ -27,12 +29,13 @@ class NodeServiceTest extends BaseTest
      * @depends testNodeFindByUUID
      * @param Models\Node $node
      */
-    public function testNodeParameters(Models\Node $node){
-        $this->assertEquals(NULL, $node->getAvailabilityZone(), 'getAvailabilityZone did not return expected result');
+    public function testNodeParameters(Models\Node $node)
+    {
+        $this->assertEquals(null, $node->getAvailabilityZone(), 'getAvailabilityZone did not return expected result');
         $this->assertEquals(2, $node->getCpu(), 'getCpu did not return expected result');
         $this->assertEquals(16, $node->getCurrentNumContainers(), 'getCurrentNumContainers did not return expected result');
         $this->assertEquals('Mon, 13 Apr 2015 10:44:56 +0000', $node->getDeployedDatetime(), 'getDeployedDatetime did not return expected result');
-        $this->assertEquals(NULL, $node->getDestroyedDatetime(), 'getDestroyedDatetime did not return expected result');
+        $this->assertEquals(null, $node->getDestroyedDatetime(), 'getDestroyedDatetime did not return expected result');
         $this->assertEquals(39, $node->getDisk(), 'getDisk did not return expected result');
         $this->assertEquals('native-0.2', $node->getDockerExecdriver(), 'getDockerExecdriver did not return expected result');
         $this->assertEquals('aufs', $node->getDockerGraphdriver(), 'getDockerGraphdriver did not return expected result');
@@ -48,10 +51,7 @@ class NodeServiceTest extends BaseTest
         $this->assertEquals('/api/v1/node/3cb9e362-d4ef-4e4b-9ee6-280738b53172/', $node->getResourceUri(), 'getResourceUri did not return expected result');
         $this->assertEquals('Deployed', $node->getState(), 'getState did not return expected result');
         $this->assertEquals([0 => ['name' => 'digitalocean'], 1 => ['name' => 'lon1'], 2 => ['name' => 'Prezzler']], arrayify($node->getTags()), 'getTags did not return expected result');
-        $this->assertEquals(NULL, $node->getTunnel(), 'getTunnel did not return expected result');
+        $this->assertEquals(null, $node->getTunnel(), 'getTunnel did not return expected result');
         $this->assertEquals('3cb9e362-d4ef-4e4b-9ee6-280738b53172', $node->getUuid(), 'getUuid did not return expected result');
     }
-
-
-
 }

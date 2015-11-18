@@ -6,7 +6,8 @@ use Thru\TutumApi\Client;
 
 class StackClientTest extends BaseTest
 {
-    public function testStackList(){
+    public function testStackList()
+    {
         $stacks = Client::getInstance()->stacks()->index();
         #$this->putExpectation("Stack/IndexAll", $stacks);
         #$this->putExpectation("Stack/IndexOne", $stacks[0]);
@@ -15,13 +16,15 @@ class StackClientTest extends BaseTest
         $this->assertEquals($this->getExpectation("Stack/IndexOne"), $stacks[0]);
     }
 
-    public function testStackFindByUUID(){
+    public function testStackFindByUUID()
+    {
         $stack = Client::getInstance()->stacks()->find("7734bf20-a765-47a1-82e6-019e885dc327");
         #$this->putExpectation("Stack/FindByUUID", $stack);
         $this->assertEquals($this->getExpectation("Stack/FindByUUID"), $stack);
     }
 
-    public function testStackFindByName(){
+    public function testStackFindByName()
+    {
         $stack = Client::getInstance()->stacks()->findByName("Thruio");
         #$this->putExpectation("Stack/FindByName", $stack);
         $this->assertEquals($this->getExpectation("Stack/FindByName"), $stack);

@@ -7,9 +7,9 @@ use Thru\TutumApi\Models;
 
 class ServiceServiceTest extends BaseTest
 {
-    public function testServiceServices(){
+    public function testServiceServices()
+    {
         $service = Client::getInstance()->services()->findByName("MySQL");
         $this->assertTrue($service instanceof Models\Service);
     }
-
 }

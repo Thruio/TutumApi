@@ -2,11 +2,13 @@
 
 require_once("vendor/autoload.php");
 
-function arrayify($object){
+function arrayify($object)
+{
     return json_decode(json_encode($object), true);
 }
 
-function var_export_compact($object){
+function var_export_compact($object)
+{
     $data = var_export($object, true);
     $data = str_replace("array (", "[", $data);
     $data = str_replace(")", "]", $data);
@@ -14,7 +16,7 @@ function var_export_compact($object){
     $data = str_replace("\t", "", $data);
     $data = preg_replace('/(\s)+/', ' ', $data);
     $data = str_replace(", ]", "]", $data);
-    $data = str_replace("[ ","[", $data);
+    $data = str_replace("[ ", "[", $data);
 
 
     return $data;
