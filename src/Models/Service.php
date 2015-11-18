@@ -7,18 +7,19 @@ use Thru\TutumApi\Util;
 class Service extends BaseService
 {
 
-    public function setContainerPorts($ports){
+    public function setContainerPorts($ports)
+    {
         $portArray = [];
         /** @var Port $port */
-        foreach($ports as $i => $port){
-            if($port instanceof Port) {
+        foreach ($ports as $i => $port) {
+            if ($port instanceof Port) {
                 $portArray[$i]['endpoint'] = $port->getEndpoint();
                 $portArray[$i]['innerPort'] = $port->getInnerPort();
                 $portArray[$i]['outerPort'] = $port->getOuterPort();
                 $portArray[$i]['portName'] = $port->getPortName();
                 $portArray[$i]['protocol'] = $port->getProtocol();
                 $portArray[$i]['isPublished'] = $port->isPublished();
-            }else{
+            } else {
                 $portArray[$i]['endpoint'] = $port->endpoint_uri;
                 $portArray[$i]['innerPort'] = $port->inner_port;
                 $portArray[$i]['outerPort'] = $port->outer_port;
@@ -75,8 +76,11 @@ class Service extends BaseService
         }
         $containers = [];
         foreach (parent::getContainers() as $containerUri) {
-            $containers[] = Client::getInstance()->containers()->find(str_replace("api/v1/container/", "",
-              trim($containerUri, "/")));
+            $containers[] = Client::getInstance()->containers()->find(str_replace(
+                "api/v1/container/",
+                "",
+                trim($containerUri, "/")
+            ));
         }
 
         return $containers;
@@ -137,12 +141,12 @@ class Service extends BaseService
                 if ($port->getOuterPort()) {
                     $portArray['outer_port'] = $port->getOuterPort();
                 }
-                if ($port->getProtocol()){
+                if ($port->getProtocol()) {
                     $portArray['protocol'] = $port->getProtocol();
-                }else{
+                } else {
                     $portArray['protocol'] = 'tcp';
                 }
-                if ($port->isPublished()){
+                if ($port->isPublished()) {
                     $portArray['published'] = true;
                 }
                 $ports[] = $portArray;
@@ -150,12 +154,12 @@ class Service extends BaseService
         }
 
         $tags = [];
-        foreach($this->getTags() as $tag){
+        foreach ($this->getTags() as $tag) {
             $tags[] = ['name' => $tag];
         }
 
         $linkedServices = [];
-        foreach($this->linkedToService as $linkedToService){
+        foreach ($this->linkedToService as $linkedToService) {
             $linkedServices[] = [
                 'to_service' => $linkedToService->to_service,
                 'name' => $linkedToService->name
@@ -233,6 +237,4 @@ class Service extends BaseService
 
         return $service;
     }
-
-
 }

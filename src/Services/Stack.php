@@ -1,18 +1,20 @@
 <?php
 namespace Thru\TutumApi\Services;
+
 use Thru\TutumApi\Models;
 
 class Stack extends BaseApi
 {
-    public function create($name){
+    public function create($name)
+    {
         $responses = $this->getClient()->makeRequest(
-          "POST",
-          "/api/v1/stack/",
-          [
+            "POST",
+            "/api/v1/stack/",
+            [
             'body' => json_encode([
                 'name' => $name,
             ], JSON_PRETTY_PRINT)
-          ]
+            ]
         );
         return self::find($responses->uuid);
     }
@@ -21,12 +23,13 @@ class Stack extends BaseApi
      * @return Models\Stack[]
      * @throws \Exception
      */
-    public function index(){
+    public function index()
+    {
         $responses = $this->getClient()->makeRequest("GET", "/api/v1/stack/");
         #$this->generateGettersSetters(end($responses->objects));
         $stacks = [];
 
-        if(count($responses->objects) > 0) {
+        if (count($responses->objects) > 0) {
             foreach ($responses->objects as $response) {
                 $stack = $this->getStackFromResponse($response);
                 $stacks[] = $stack;
@@ -35,12 +38,38 @@ class Stack extends BaseApi
         return $stacks;
     }
 
-    public function export($uuid){
+    public function start($uuid)
+    {
+        $response = $this->getClient()->makeRequest("POST", "/api/v1/stack/{$uuid}/start");
+        return $response;
+    }
+
+    public function stop($uuid)
+    {
+        $response = $this->getClient()->makeRequest("POST", "/api/v1/stack/{$uuid}/stop");
+        return $response;
+    }
+
+    public function terminate($uuid)
+    {
+        $response = $this->getClient()->makeRequest("POST", "/api/v1/stack/{$uuid}/terminate");
+        return $response;
+    }
+
+    public function redeploy($uuid)
+    {
+        $response = $this->getClient()->makeRequest("POST", "/api/v1/stack/{$uuid}/redeploy");
+        return $response;
+    }
+
+    public function export($uuid)
+    {
         $response = $this->getClient()->makeRequest("GET", "/api/v1/stack/{$uuid}/export");
         return $response;
     }
 
-    public function import($uuid, $services){
+    public function import($uuid, $services)
+    {
         $body = json_encode([
           'services' => $services,
         ], JSON_PRETTY_PRINT);
@@ -65,7 +94,8 @@ class Stack extends BaseApi
      * @return Models\Stack
      * @throws \Exception
      */
-    public function find($uuid, Models\Stack & $stack = null){
+    public function find($uuid, Models\Stack & $stack = null)
+    {
         $response = $this->getClient()->makeRequest("GET", "/api/v1/stack/{$uuid}/");
         $stack = $this->getStackFromResponse($response, $stack);
         return $stack;
@@ -75,18 +105,20 @@ class Stack extends BaseApi
      * @param $name
      * @return false|Models\Stack
      */
-    public function findByName($name){
+    public function findByName($name)
+    {
         $stacks = $this->index();
-        foreach($stacks as $stack){
-            if($stack->getName() == $name && $stack->getState() != "Terminated"){
+        foreach ($stacks as $stack) {
+            if ($stack->getName() == $name && $stack->getState() != "Terminated") {
                 return $stack;
             }
         }
         return false;
     }
 
-    public function getStackFromResponse($response, Models\Stack &$stack = null){
-        if($stack === null) {
+    public function getStackFromResponse($response, Models\Stack &$stack = null)
+    {
+        if ($stack === null) {
             $stack = new Models\Stack();
         }
 

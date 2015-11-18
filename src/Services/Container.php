@@ -1,5 +1,6 @@
 <?php
 namespace Thru\TutumApi\Services;
+
 use Thru\TutumApi\Models;
 
 class Container extends BaseApi
@@ -9,18 +10,20 @@ class Container extends BaseApi
      * @return Models\Container[]
      * @throws \Exception
      */
-    public function index(){
+    public function index()
+    {
         $responses = $this->getClient()->makeRequest("GET", "/api/v1/container/");
         #$this->generateGettersSetters(end($responses->objects));
         $containers = [];
-        foreach($responses->objects as $response){
+        foreach ($responses->objects as $response) {
             $container = $this->getContainerFromResponse($response);
             $containers[] = $container;
         }
         return $containers;
     }
 
-    public function find($uuid, Models\Container & $container = null){
+    public function find($uuid, Models\Container & $container = null)
+    {
         $response = $this->getClient()->makeRequest("GET", "/api/v1/container/{$uuid}/");
         $container = $this->getContainerFromResponse($response, $container);
         return $container;
@@ -30,18 +33,20 @@ class Container extends BaseApi
      * @param $name
      * @return false|Models\Container
      */
-    public function findByName($name){
+    public function findByName($name)
+    {
         $containers = $this->index();
-        foreach($containers as $container){
-            if($container->getName() == $name){
+        foreach ($containers as $container) {
+            if ($container->getName() == $name) {
                 return $container;
             }
         }
         return false;
     }
 
-    public function getContainerFromResponse($response, Models\Container $container = null){
-        if($container === null) {
+    public function getContainerFromResponse($response, Models\Container $container = null)
+    {
+        if ($container === null) {
             $container = new Models\Container();
         }
         

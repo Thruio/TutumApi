@@ -42,291 +42,363 @@ class BaseContainer extends Model
     protected $uuid;
     protected $workingDir;
 
-    public function getAutodestroy(){
+    public function getAutodestroy()
+    {
         return $this->autodestroy;
     }
 
-    public function setAutodestroy($autodestroy){
+    public function setAutodestroy($autodestroy)
+    {
         $this->autodestroy = $autodestroy;
     }
 
-    public function getAutorestart(){
+    public function getAutorestart()
+    {
         return $this->autorestart;
     }
 
-    public function setAutorestart($autorestart){
+    public function setAutorestart($autorestart)
+    {
         $this->autorestart = $autorestart;
     }
 
-    public function getBindings(){
+    public function getBindings()
+    {
         return $this->bindings;
     }
 
-    public function setBindings($bindings){
+    public function setBindings($bindings)
+    {
         $this->bindings = $bindings;
     }
 
-    public function getContainerEnvvars(){
+    public function getContainerEnvvars()
+    {
         return $this->containerEnvvars;
     }
 
-    public function setContainerEnvvars($containerEnvvars){
+    public function setContainerEnvvars($containerEnvvars)
+    {
         $this->containerEnvvars = $containerEnvvars;
     }
 
-    public function getContainerPorts(){
+    public function getContainerPorts()
+    {
         return $this->containerPorts;
     }
 
-    public function setContainerPorts($containerPorts){
+    public function setContainerPorts($containerPorts)
+    {
         $this->containerPorts = $containerPorts;
     }
 
-    public function getCpuShares(){
+    public function getCpuShares()
+    {
         return $this->cpuShares;
     }
 
-    public function setCpuShares($cpuShares){
+    public function setCpuShares($cpuShares)
+    {
         $this->cpuShares = $cpuShares;
     }
 
-    public function getDeployedDatetime(){
+    public function getDeployedDatetime()
+    {
         return $this->deployedDatetime;
     }
 
-    public function setDeployedDatetime($deployedDatetime){
+    public function setDeployedDatetime($deployedDatetime)
+    {
         $this->deployedDatetime = $deployedDatetime;
     }
 
-    public function getDestroyedDatetime(){
+    public function getDestroyedDatetime()
+    {
         return $this->destroyedDatetime;
     }
 
-    public function setDestroyedDatetime($destroyedDatetime){
+    public function setDestroyedDatetime($destroyedDatetime)
+    {
         $this->destroyedDatetime = $destroyedDatetime;
     }
 
-    public function getDockerId(){
+    public function getDockerId()
+    {
         return $this->dockerId;
     }
 
-    public function setDockerId($dockerId){
+    public function setDockerId($dockerId)
+    {
         $this->dockerId = $dockerId;
     }
 
-    public function getEntrypoint(){
+    public function getEntrypoint()
+    {
         return $this->entrypoint;
     }
 
-    public function setEntrypoint($entrypoint){
+    public function setEntrypoint($entrypoint)
+    {
         $this->entrypoint = $entrypoint;
     }
 
-    public function getExitCode(){
+    public function getExitCode()
+    {
         return $this->exitCode;
     }
 
-    public function setExitCode($exitCode){
+    public function setExitCode($exitCode)
+    {
         $this->exitCode = $exitCode;
     }
 
-    public function getExitCodeMsg(){
+    public function getExitCodeMsg()
+    {
         return $this->exitCodeMsg;
     }
 
-    public function setExitCodeMsg($exitCodeMsg){
+    public function setExitCodeMsg($exitCodeMsg)
+    {
         $this->exitCodeMsg = $exitCodeMsg;
     }
 
-    public function getImageName(){
+    public function getImageName()
+    {
         return $this->imageName;
     }
 
-    public function setImageName($imageName){
+    public function setImageName($imageName)
+    {
         $this->imageName = $imageName;
     }
 
-    public function getImageTag(){
+    public function getImageTag()
+    {
         return $this->imageTag;
     }
 
-    public function setImageTag($imageTag){
+    public function setImageTag($imageTag)
+    {
         $this->imageTag = $imageTag;
     }
 
-    public function getLastMetric(){
+    public function getLastMetric()
+    {
         return $this->lastMetric;
     }
 
-    public function setLastMetric($lastMetric){
+    public function setLastMetric($lastMetric)
+    {
         $this->lastMetric = $lastMetric;
     }
 
-    public function getLayer(){
+    public function getLayer()
+    {
         return $this->layer;
     }
 
-    public function setLayer($layer){
+    public function setLayer($layer)
+    {
         $this->layer = $layer;
     }
 
-    public function getLinkVariables(){
+    public function getLinkVariables()
+    {
         return $this->linkVariables;
     }
 
-    public function setLinkVariables($linkVariables){
+    public function setLinkVariables($linkVariables)
+    {
         $this->linkVariables = $linkVariables;
     }
 
-    public function getLinkedToContainer(){
+    public function getLinkedToContainer()
+    {
         return $this->linkedToContainer;
     }
 
-    public function setLinkedToContainer($linkedToContainer){
+    public function setLinkedToContainer($linkedToContainer)
+    {
         $this->linkedToContainer = $linkedToContainer;
     }
 
-    public function getMemory(){
+    public function getMemory()
+    {
         return $this->memory;
     }
 
-    public function setMemory($memory){
+    public function setMemory($memory)
+    {
         $this->memory = $memory;
     }
 
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function setName($name){
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
-    public function getNet(){
+    public function getNet()
+    {
         return $this->net;
     }
 
-    public function setNet($net){
+    public function setNet($net)
+    {
         $this->net = $net;
     }
 
-    public function getNode(){
+    public function getNode()
+    {
         return $this->node;
     }
 
-    public function setNode($node){
+    public function setNode($node)
+    {
         $this->node = $node;
     }
 
-    public function getPid(){
+    public function getPid()
+    {
         return $this->pid;
     }
 
-    public function setPid($pid){
+    public function setPid($pid)
+    {
         $this->pid = $pid;
     }
 
-    public function getPrivateIp(){
+    public function getPrivateIp()
+    {
         return $this->privateIp;
     }
 
-    public function setPrivateIp($privateIp){
+    public function setPrivateIp($privateIp)
+    {
         $this->privateIp = $privateIp;
     }
 
-    public function getPrivileged(){
+    public function getPrivileged()
+    {
         return $this->privileged;
     }
 
-    public function setPrivileged($privileged){
+    public function setPrivileged($privileged)
+    {
         $this->privileged = $privileged;
     }
 
-    public function getPublicDns(){
+    public function getPublicDns()
+    {
         return $this->publicDns;
     }
 
-    public function setPublicDns($publicDns){
+    public function setPublicDns($publicDns)
+    {
         $this->publicDns = $publicDns;
     }
 
-    public function getResourceUri(){
+    public function getResourceUri()
+    {
         return $this->resourceUri;
     }
 
-    public function setResourceUri($resourceUri){
+    public function setResourceUri($resourceUri)
+    {
         $this->resourceUri = $resourceUri;
     }
 
-    public function getRoles(){
+    public function getRoles()
+    {
         return $this->roles;
     }
 
-    public function setRoles($roles){
+    public function setRoles($roles)
+    {
         $this->roles = $roles;
     }
 
-    public function getRunCommand(){
+    public function getRunCommand()
+    {
         return $this->runCommand;
     }
 
-    public function setRunCommand($runCommand){
+    public function setRunCommand($runCommand)
+    {
         $this->runCommand = $runCommand;
     }
 
-    public function getService(){
+    public function getService()
+    {
         return $this->service;
     }
 
-    public function setService($service){
+    public function setService($service)
+    {
         $this->service = $service;
     }
 
-    public function getStartedDatetime(){
+    public function getStartedDatetime()
+    {
         return $this->startedDatetime;
     }
 
-    public function setStartedDatetime($startedDatetime){
+    public function setStartedDatetime($startedDatetime)
+    {
         $this->startedDatetime = $startedDatetime;
     }
 
-    public function getState(){
+    public function getState()
+    {
         return $this->state;
     }
 
-    public function setState($state){
+    public function setState($state)
+    {
         $this->state = $state;
     }
 
-    public function getStoppedDatetime(){
+    public function getStoppedDatetime()
+    {
         return $this->stoppedDatetime;
     }
 
-    public function setStoppedDatetime($stoppedDatetime){
+    public function setStoppedDatetime($stoppedDatetime)
+    {
         $this->stoppedDatetime = $stoppedDatetime;
     }
 
-    public function getSynchronized(){
+    public function getSynchronized()
+    {
         return $this->synchronized;
     }
 
-    public function setSynchronized($synchronized){
+    public function setSynchronized($synchronized)
+    {
         $this->synchronized = $synchronized;
     }
 
-    public function getUuid(){
+    public function getUuid()
+    {
         return $this->uuid;
     }
 
-    public function setUuid($uuid){
+    public function setUuid($uuid)
+    {
         $this->uuid = $uuid;
     }
 
-    public function getWorkingDir(){
+    public function getWorkingDir()
+    {
         return $this->workingDir;
     }
 
-    public function setWorkingDir($workingDir){
+    public function setWorkingDir($workingDir)
+    {
         $this->workingDir = $workingDir;
     }
 }

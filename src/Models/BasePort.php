@@ -11,56 +11,68 @@ class BasePort extends Model
     protected $protocol;
     protected $isPublished;
 
-    public function getEndpoint(){
+    public function getEndpoint()
+    {
         return $this->endpoint;
     }
 
-    public function setEndpoint($endpoint){
+    public function setEndpoint($endpoint)
+    {
         $this->endpoint = $endpoint;
     }
 
-    public function getInnerPort(){
+    public function getInnerPort()
+    {
         return $this->innerPort;
     }
 
-    public function setInnerPort($innerPort){
+    public function setInnerPort($innerPort)
+    {
         $this->innerPort = $innerPort;
     }
 
-    public function getOuterPort(){
+    public function getOuterPort()
+    {
         return $this->outerPort;
     }
 
-    public function setOuterPort($outerPort){
+    public function setOuterPort($outerPort)
+    {
         $this->outerPort = $outerPort;
     }
 
-    public function getPortName(){
+    public function getPortName()
+    {
         return $this->portName;
     }
 
-    public function setPortName($portName){
+    public function setPortName($portName)
+    {
         $this->portName = $portName;
     }
 
-    public function getProtocol(){
+    public function getProtocol()
+    {
         return $this->protocol;
     }
 
-    public function setProtocol($protocol){
+    public function setProtocol($protocol)
+    {
         $this->protocol = $protocol;
     }
 
-    protected function getIsPublished(){
+    protected function getIsPublished()
+    {
         return $this->isPublished;
     }
 
-    public function setIsPublished($isPublished){
+    public function setIsPublished($isPublished)
+    {
         $this->isPublished = $isPublished;
     }
 
-    public function isPublished(){
+    public function isPublished()
+    {
         return $this->getIsPublished()===true?true:false;
     }
-
 }

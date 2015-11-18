@@ -1,15 +1,15 @@
 <?php
 namespace Thru\TutumApi\Models;
 
-
 class Port extends BasePort
 {
-    static public function Build($internal = null, $external = null, $public = false){
+    public static function Build($internal = null, $external = null, $public = false)
+    {
         $port = new self();
-        if($internal){
+        if ($internal) {
             $port->setInnerPort($internal);
         }
-        if($external) {
+        if ($external) {
             $port->setOuterPort($external);
             $port->setIsPublished(true);
         }

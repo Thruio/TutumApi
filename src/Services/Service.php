@@ -1,5 +1,6 @@
 <?php
 namespace Thru\TutumApi\Services;
+
 use GuzzleHttp\Exception\ClientException;
 use Thru\TutumApi\Models;
 
@@ -10,18 +11,20 @@ class Service extends BaseApi
      * @return Models\Service[]
      * @throws \Exception
      */
-    public function index(){
+    public function index()
+    {
         $responses = $this->getClient()->makeRequest("GET", "/api/v1/service/");
         //$this->generateGettersSetters(end($responses->objects));
         $services = [];
-        foreach($responses->objects as $response){
+        foreach ($responses->objects as $response) {
             $service = $this->getServiceFromResponse($response);
             $services[] = $service;
         }
         return $services;
     }
 
-    public function find($uuid, Models\Service & $service = null){
+    public function find($uuid, Models\Service & $service = null)
+    {
         $uuid = trim($uuid, "/");
         $uuid = str_replace("api/v1/service/", "", $uuid);
         $response = $this->getClient()->makeRequest("GET", "/api/v1/service/{$uuid}/");
@@ -33,18 +36,20 @@ class Service extends BaseApi
      * @param $name
      * @return false|Models\Service
      */
-    public function findByName($name){
+    public function findByName($name)
+    {
         $services = $this->index();
-        foreach($services as $service){
-            if($service->getName() == $name){
+        foreach ($services as $service) {
+            if ($service->getName() == $name) {
                 return $service;
             }
         }
         return false;
     }
 
-    public function getServiceFromResponse($response, Models\Service $service = null){
-        if($service === null) {
+    public function getServiceFromResponse($response, Models\Service $service = null)
+    {
+        if ($service === null) {
             $service = new Models\Service();
         }
         $service->setAutodestroy($response->autodestroy);
@@ -87,36 +92,38 @@ class Service extends BaseApi
         return $service;
     }
 
-    public function startService($uuid){
+    public function startService($uuid)
+    {
         $response = $this->getClient()->makeRequest(
-          "POST",
-          "/api/v1/service/{$uuid}/start/",
-          [
+            "POST",
+            "/api/v1/service/{$uuid}/start/",
+            [
             'body' => ['uuid' => $uuid],
             'headers' => [
               'Accept' => 'application/json',
               'Content-Type' => 'application/json'
             ],
             'allow_redirects' => false
-          ]
+            ]
         );
 
         $service = $this->getServiceFromResponse($response);
         return $service;
     }
 
-    public function stopService($uuid){
+    public function stopService($uuid)
+    {
         $response = $this->getClient()->makeRequest(
-          "POST",
-          "/api/v1/service/{$uuid}/stop/",
-          [
+            "POST",
+            "/api/v1/service/{$uuid}/stop/",
+            [
             'body' => ['uuid' => $uuid],
             'headers' => [
               'Accept' => 'application/json',
               'Content-Type' => 'application/json'
             ],
             'allow_redirects' => false
-          ]
+            ]
         );
 
         $service = $this->getServiceFromResponse($response);

@@ -15,7 +15,8 @@ class Client
     private $username;
     private $apiKey;
 
-    public function __construct($username, $apiKey){
+    public function __construct($username, $apiKey)
+    {
         $this->username = $username;
         $this->apiKey = $apiKey;
 
@@ -35,7 +36,8 @@ class Client
         
     }
 
-    static public function configure($username, $apiKey){
+    public static function configure($username, $apiKey)
+    {
         self::$instance = new Client($username, $apiKey);
     }
 
@@ -43,41 +45,47 @@ class Client
      * @return Client
      * @throws \Exception
      */
-    static public function getInstance(){
-        if(self::$instance instanceof Client) {
+    public static function getInstance()
+    {
+        if (self::$instance instanceof Client) {
             return self::$instance;
-        }else{
+        } else {
             throw new \Exception("Must run Client::configure() first!");
         }
     }
 
-    public function makeRequest($type, $method, $options = []){
+    public function makeRequest($type, $method, $options = [])
+    {
 
         $request = $this->client->createRequest($type, $method, $options);
         $res = $this->client->send($request);
 
-        if($res->getHeader('content-type') == 'application/json'){
+        if ($res->getHeader('content-type') == 'application/json') {
             $json = json_decode($res->getBody()->getContents());
-        }else{
+        } else {
             throw new \Exception("Server did not send JSON. Response was \"{$res->getBody()->getContents()}\"");
         }
 
         return $json;
     }
 
-    public function stacks(){
+    public function stacks()
+    {
         return new Services\Stack($this);
     }
 
-    public function services(){
+    public function services()
+    {
         return new Services\Service($this);
     }
 
-    public function containers(){
+    public function containers()
+    {
         return new Services\Container($this);
     }
 
-    public function nodes(){
+    public function nodes()
+    {
         return new Services\Node($this);
     }
 }

@@ -14,71 +14,88 @@ class BaseStack extends Model
     protected $synchronized;
     protected $uuid;
 
-    public function getDeployedDatetime(){
+    public function getDeployedDatetime()
+    {
         return $this->deployedDatetime;
     }
 
-    public function setDeployedDatetime($deployedDatetime){
+    public function setDeployedDatetime($deployedDatetime)
+    {
         $this->deployedDatetime = $deployedDatetime;
     }
 
-    public function getDestroyedDatetime(){
+    public function getDestroyedDatetime()
+    {
         return $this->destroyedDatetime;
     }
 
-    public function setDestroyedDatetime($destroyedDatetime){
+    public function setDestroyedDatetime($destroyedDatetime)
+    {
         $this->destroyedDatetime = $destroyedDatetime;
     }
 
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function setName($name){
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
-    public function getResourceUri(){
+    public function getResourceUri()
+    {
         return $this->resourceUri;
     }
 
-    public function setResourceUri($resourceUri){
+    public function setResourceUri($resourceUri)
+    {
         $this->resourceUri = $resourceUri;
     }
 
-    public function getServices(){
+    public function getServices()
+    {
         return $this->services;
     }
 
-    public function setServices($services){
+    public function setServices($services)
+    {
         $this->services = $services;
     }
 
-    public function getState(){
+    public function getState()
+    {
         return $this->state;
     }
 
-    public function setState($state){
+    public function setState($state)
+    {
         $this->state = $state;
     }
 
-    public function getSynchronized(){
+    public function getSynchronized()
+    {
         return $this->synchronized;
     }
 
-    public function setSynchronized($synchronized){
+    public function setSynchronized($synchronized)
+    {
         $this->synchronized = $synchronized;
     }
 
-    public function getUuid(){
+    public function getUuid()
+    {
         return $this->uuid;
     }
 
-    public function setUuid($uuid){
+    public function setUuid($uuid)
+    {
         $this->uuid = $uuid;
     }
 
-    public function reload(){
+    public function reload()
+    {
         Client::getInstance()->stacks()->find($this->getUuid(), $this);
     }
 }
