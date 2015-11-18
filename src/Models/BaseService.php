@@ -2,6 +2,7 @@
 namespace Thru\TutumApi\Models;
 
 use Thru\TutumApi\Client;
+use Thru\TutumApi\Services\Service;
 
 class BaseService extends Model
 {
@@ -16,7 +17,7 @@ class BaseService extends Model
     protected $cpuShares;
     protected $currentNumContainers;
     protected $deployedDatetime;
-    protected $deploymentStrategy;
+    protected $deploymentStrategy = "EMPTIEST_NODE";
     protected $destroyedDatetime;
     protected $entrypoint;
     protected $imageName;
@@ -44,7 +45,7 @@ class BaseService extends Model
     protected $stoppedNumContainers;
     protected $synchronized;
     protected $tags;
-    protected $targetNumContainers;
+    protected $targetNumContainers = 1;
     protected $uuid;
     protected $workingDir;
 
@@ -373,6 +374,7 @@ class BaseService extends Model
         $this->linkedToService = $linkedToService;
     }
 
+
     public function getNet(){
         if(!isset($this->net)){
             $this->reload();
@@ -415,6 +417,16 @@ class BaseService extends Model
     }
 
     public function reload(){
-        Client::getInstance()->services()->find($this->getUuid(), $this);
+        if($this->getUuid()) {
+            Client::getInstance()->services()->find($this->getUuid(), $this);
+        }
+    }
+
+    public function linkTo(\Thru\TutumApi\Models\Service $service, $alias = null){
+        $link = new \StdClass();
+        $link->to_service = $service->name;
+        $link->name = $alias?$alias:$service->name;
+        $this->linkedToService[] = $link;
+        return $this;
     }
 }

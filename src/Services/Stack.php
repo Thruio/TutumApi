@@ -11,7 +11,7 @@ class Stack extends BaseApi
           [
             'body' => json_encode([
                 'name' => $name,
-            ])
+            ], JSON_PRETTY_PRINT)
           ]
         );
         return self::find($responses->uuid);
@@ -43,11 +43,19 @@ class Stack extends BaseApi
     public function import($uuid, $services){
         $body = json_encode([
           'services' => $services,
-        ]);
+        ], JSON_PRETTY_PRINT);
         $headers = [
           'Content-Type' => 'application/json'
         ];
-        $response = $this->getClient()->makeRequest("PATCH", "/api/v1/stack/{$uuid}/", ['body' => $body, 'headers' => $headers]);
+        \Kint::dump($uuid, $body, $headers);
+        $response = $this->getClient()->makeRequest(
+            "PATCH",
+            "/api/v1/stack/{$uuid}/",
+            [
+                'body' => $body,
+                'headers' => $headers
+            ]
+        );
         return $this->getStackFromResponse($response);
     }
 

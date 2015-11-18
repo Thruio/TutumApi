@@ -154,6 +154,14 @@ class Service extends BaseService
             $tags[] = ['name' => $tag];
         }
 
+        $linkedServices = [];
+        foreach($this->linkedToService as $linkedToService){
+            $linkedServices[] = [
+                'to_service' => $linkedToService->to_service,
+                'name' => $linkedToService->name
+            ];
+        }
+
         $array = [
           'name' => Util::Slugify($this->getName()),
           'image' => $this->getImageName(),
@@ -163,7 +171,8 @@ class Service extends BaseService
           #'autoredeploy' => $this->getAutoredeploy(),
           'autodestroy' => $this->getAutodestroy(),
           'deployment_strategy' => $this->getDeploymentStrategy(),
-          'tags' => $tags
+          'tags' => $tags,
+          'linked_to_service' => $linkedServices,
         ];
 
         return $array;
