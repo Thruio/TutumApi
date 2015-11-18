@@ -76,6 +76,8 @@ class Stack extends BaseApi
         $headers = [
           'Content-Type' => 'application/json'
         ];
+
+        #\Kint::dump($body, $headers);
         $response = $this->getClient()->makeRequest(
             "PATCH",
             "/api/v1/stack/{$uuid}/",

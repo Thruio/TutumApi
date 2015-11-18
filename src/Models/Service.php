@@ -189,12 +189,14 @@ class Service extends BaseService
           'name' => Util::Slugify($this->getName()),
           'image' => $this->getImageName(),
           'container_ports' => $ports,
-          'target_num_containers' => $this->getTargetNumContainers(),
           'restart' => strtolower(str_replace("_", "-", $this->getAutorestart())),
           #'autoredeploy' => $this->getAutoredeploy(),
           'autodestroy' => $this->getAutodestroy(),
           'deployment_strategy' => $this->getDeploymentStrategy(),
         ];
+        if($this->getTargetNumContainers() > 0){
+            $array['target_num_containers'] = $this->getTargetNumContainers();
+        }
         if ($tags) {
             $array['tags'] = $tags;
         }

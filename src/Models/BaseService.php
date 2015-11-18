@@ -76,6 +76,10 @@ class BaseService extends Model
 
     public function setAutorestart($autorestart)
     {
+        $autorestartOptions = ['NO', 'ON_FAILURE', 'ALWAYS'];
+        if(!in_array($autorestart, $autorestartOptions)){
+            throw new \Exception("setAutorestart only takes " . implode(", ", $autorestartOptions));
+        }
         $this->autorestart = $autorestart;
     }
 
@@ -126,6 +130,14 @@ class BaseService extends Model
 
     public function setDeploymentStrategy($deploymentStrategy)
     {
+        $deploymentStrategyOptions = ['EMPTIEST_NODE', 'HIGH_AVAILABILITY', 'EVERY_NODE'];
+        $deploymentStrategy = strtoupper($deploymentStrategy);
+        if(!in_array($deploymentStrategy, $deploymentStrategyOptions)){
+            throw new \Exception("Deployment strategy {$deploymentStrategy} is invalid. Only " . implode(", ", $deploymentStrategyOptions) . " are valid");
+        }
+        if($deploymentStrategy == 'EVERY_NODE'){
+            $this->setTargetNumContainers(null);
+        }
         $this->deploymentStrategy = $deploymentStrategy;
     }
 
@@ -507,10 +519,10 @@ class BaseService extends Model
         }
     }
 
-    public function linkTo(\Thru\TutumApi\Models\Service $service, $alias = null)
+    public function linkTo(\Thru\TutumApi\Models\Service $service, $alias = null, Stack $stack = null)
     {
         $link = new \StdClass();
-        $link->to_service = $service->name;
+        $link->to_service = $stack instanceof Stack ? $service->getName() . "." . $stack->getName() : $service->name;
         $link->name = $alias?$alias:$service->name;
         $this->linkedToService[] = $link;
         return $this;
