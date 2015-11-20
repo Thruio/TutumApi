@@ -58,8 +58,12 @@ class Client
     {
 
         $request = $this->client->createRequest($type, $method, $options);
-        $res = $this->client->send($request);
-
+        try {
+            $res = $this->client->send($request);
+        }catch(GuzzleHttp\Exception\ClientException $ce){
+            \Kint::dump($ce->getResponse()->getBody()->getContents());
+            throw $ce;
+        }
         if ($res->getHeader('content-type') == 'application/json') {
             $json = json_decode($res->getBody()->getContents());
         } else {

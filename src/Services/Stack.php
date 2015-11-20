@@ -52,7 +52,7 @@ class Stack extends BaseApi
 
     public function terminate($uuid)
     {
-        $response = $this->getClient()->makeRequest("DELETE", "/api/v1/stack/{$uuid}/terminate/");
+        $response = $this->getClient()->makeRequest("DELETE", "/api/v1/stack/{$uuid}/");
         return $response;
     }
 
@@ -131,7 +131,6 @@ class Stack extends BaseApi
         $stack->setState($response->state);
         $stack->setSynchronized($response->synchronized);
         $stack->setUuid($response->uuid);
-
         return $stack;
     }
 }

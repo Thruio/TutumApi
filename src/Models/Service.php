@@ -185,6 +185,13 @@ class Service extends BaseService
             }
         }
 
+        $roles = [];
+        if (count($this->getRoles()) ){
+            foreach($this->getRoles() as $role){
+                $roles[] = $role;
+            }
+        }
+
         $array = [
           'name' => Util::Slugify($this->getName()),
           'image' => $this->getImageName(),
@@ -205,6 +212,9 @@ class Service extends BaseService
         }
         if ($envvars) {
             $array['container_envvars'] = $envvars;
+        }
+        if ($roles) {
+            $array['roles'] = $roles;
         }
 
         return $array;

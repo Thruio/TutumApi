@@ -70,6 +70,7 @@ class Service extends BaseApi
         $service->setImageTag($response->image_tag);
         $service->setLinkVariables(isset($response->link_variables)?$response->link_variables:null);
         $service->setLinkedFromService(isset($response->linked_from_service)?$response->linked_from_service:null);
+        $service->setLinkedToService(isset($response->linked_to_service)?$response->linked_to_service:null);
         $service->setMemory($response->memory);
         $service->setName($response->name);
         $service->setNetwork(isset($response->network)?$response->network:null);
